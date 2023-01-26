@@ -13,9 +13,9 @@ require('../db/conn')
 
 router.use(cookieParser())
 
-router.get('/', (req, res)=>{
-    res.send('Hello Cricket Fantasyyy!!!!')
-})
+// router.get('/', (req, res)=>{
+//     res.send('Hello Cricket Fantasyyy!!!!')
+// })
 
 router.post('/register', async (req,res)=>{
     const matches = await Match.find({})
