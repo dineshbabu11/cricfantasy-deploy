@@ -13,10 +13,6 @@ require('../db/conn')
 
 router.use(cookieParser())
 
-// router.get('/', (req, res)=>{
-//     res.send('Hello Cricket Fantasyyy!!!!')
-// })
-
 router.post('/register', async (req,res)=>{
     const matches = await Match.find({})
 
@@ -163,6 +159,12 @@ router.post('/getSelected', async (req,res) => {
     }
 
 })
+
+router.get('/signoff',(req, res) => {
+    res.clearCookie('crictoken', { path: '/'})
+    res.status(200).send('User logged out')
+})
+
 
 
 module.exports = router

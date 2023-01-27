@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Home from './components/Home';
 import Results from './components/Results'
 import Leaderboard from './components/Leaderboard'
+import Logout from './components/Logout'
 
 
 class App extends Component{
@@ -20,6 +21,7 @@ class App extends Component{
               <Route path="/home" element={<Home />}></Route>
               <Route path="/results" element={<Results />}></Route>
               <Route path="/leaderboard" element={<Leaderboard />}></Route>
+              <Route path="/logout" element={<Logout />}></Route>
             </Routes>
         </Router>
           
