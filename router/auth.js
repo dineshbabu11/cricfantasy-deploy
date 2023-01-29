@@ -30,9 +30,9 @@ router.post('/register', async (req,res)=>{
     try{
         const userExist = await User.findOne({email : email})
         if(userExist){
-            return res.json({error: "User already present with the email : " + email})
+            return res.status(400).json({error: "User already present with the email : " + email})
         } else if(password != cpassword){
-            return res.json({error: "Passwords not matching"})
+            return res.status(401).json({error: "Passwords not matching"})
         }
 
         const user = new User({name, email, password, cpassword, matches})
@@ -56,7 +56,7 @@ router.post('/signin', async (req, res)=>{
         const user = await User.findOne({email : email})
         
         if(!user){
-            return res.json({error: "User does not exist with the email : " + email})
+            return res.status(401).json({error: "User does not exist with the email : " + email})
         }
         const isMatch = await bcrypt.compare(password, user.password)
 
@@ -143,6 +143,7 @@ router.post('/getSelected', async (req,res) => {
                 }
             }
             
+            select.points = matches[index].points
             matches[index] = select
     
             user.matches = matches
