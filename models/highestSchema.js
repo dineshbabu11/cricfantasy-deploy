@@ -21,7 +21,20 @@ const highestSchema = new mongoose.Schema({
     },
     winner : {
         type : String
+    },
+    high_fours : {
+        type: Array
+    },
+    high_sixs : {
+        type: Array
+    },
+    high_SR : {
+        type: Array
+    },
+    high_econ : {
+        type: Array
     }
+
 })
 
 

@@ -48,12 +48,28 @@ const userSchema = new mongoose.Schema({
             mom : {
                 type: String
             },
+            fours : {
+                type: String
+            },
+            sixs : {
+                type: String
+            },
+            SR : {
+                type: String
+            },
+            econ : {
+                type: String
+            },
             points : {
                 type: Number
             }
 
         }
-    ]
+    ],
+
+    group : {
+        type: String,
+    }
 })
 
 

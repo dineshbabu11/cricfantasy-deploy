@@ -16,11 +16,10 @@ router.use(cookieParser())
 router.post('/register', async (req,res)=>{
     const matches = await Match.find({})
 
-    let matchids = []
-    matches.map((match)=>{
-        matchids = matchids.concat({"matchid" : match.matchid})
-    })
-    
+    matches.sort((match1, match2) => {
+        return match1.matchid - match2.matchid
+      })
+
     const {name, email, password, cpassword} = req.body
 
     if(!name || !email || !password || !cpassword){
@@ -113,12 +112,14 @@ router.get('/userSelected', authenticate, async (req, res) => {
     }
 })
 
-router.get('/leaders', async (req,res) => {
+router.get('/leaders', authenticate, async (req,res) => {
+    
     try{
-        const users = await User.find({})
+        const user = await User.findOne({email : req.rootUser.email})
+        const users = await User.find({group : user.group})
         res.send(users)
     } catch(error){
-        console.log(err)
+        console.log(error)
     }
 })
 
